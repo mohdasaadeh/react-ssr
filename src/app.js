@@ -1,28 +1,13 @@
-import React from "react";
-import { renderToString } from "react-dom/server";
 import express from "express";
 
-import App from "./client/src/App";
+import client from "./helpers/renderer";
 
 const app = express();
 
 app.use(express.static("build"));
 
 app.get("/api", (req, res) => {
-  const client = renderToString(<App />);
-  const html = `<div id="root">${client}</div><script src="client_bundle.js"></script>`;
-  //   const html = `
-  //         <html>
-  //             <body>
-  //               <div id="root">
-  //                   ${client}
-  //               </div>
-  //               <script src="client_bundle.js"></script>
-  //             </body>
-  //         </html>
-  //       `;
-
-  res.send(html);
+  res.send(client());
 });
 
 app.listen("5000", () => {
