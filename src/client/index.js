@@ -1,8 +1,8 @@
 import React from "react";
-import { renderToString } from "react-dom/server";
+import { hydrate } from "react-dom";
 
-import App from "./src/app";
+import App from "./src/App";
 
-const client = renderToString(<App />);
+const container = document.getElementById("root");
 
-export default client;
+hydrate(<App />, container);

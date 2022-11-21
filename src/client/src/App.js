@@ -1,7 +1,17 @@
 import React from "react";
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <section>
+      <button
+        onClick={() => {
+          console.log("clicked");
+        }}
+      >
+        <span>Hello world</span>
+      </button>
+    </section>
+  );
 };
 
 export default App;
