@@ -6,8 +6,8 @@ const app = express();
 
 app.use(express.static("build"));
 
-app.get("/api", (req, res) => {
-  res.send(client());
+app.get("/", (req, res) => {
+  res.send(client(req));
 });
 
 app.listen("5000", () => {
