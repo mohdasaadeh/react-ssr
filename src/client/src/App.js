@@ -1,10 +1,17 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import "@babel/polyfill";
 
-import { Home } from "./layouts/Home";
+import HomePage from "./pages/HomePage";
+import UsersPage from "./pages/UsersPage";
 
 const App = () => {
-  return <Route exact path="/" component={Home} />;
+  return (
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route path="/users" component={UsersPage} />
+    </Switch>
+  );
 };
 
 export default App;

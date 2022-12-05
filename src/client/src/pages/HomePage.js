@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Home = () => {
+const HomePage = () => {
   return (
     <section>
       <button
@@ -13,3 +13,5 @@ export const Home = () => {
     </section>
   );
 };
+
+export default HomePage;

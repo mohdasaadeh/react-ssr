@@ -1,13 +1,15 @@
 import express from "express";
 
-import client from "./helpers/renderer";
+import { renderer, createReduxStore } from "./helpers";
 
 const app = express();
 
 app.use(express.static("build"));
 
-app.get("/", (req, res) => {
-  res.send(client(req));
+app.get("*", (req, res) => {
+  const store = createReduxStore();
+
+  res.send(renderer(req, store));
 });
 
 app.listen("5000", () => {

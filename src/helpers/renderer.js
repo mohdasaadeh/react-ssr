@@ -1,14 +1,17 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
 import App from "../client/src/App";
 
-module.exports = (req) => {
+export const renderer = (req, store) => {
   const client = renderToString(
-    <StaticRouter location={req.path} context={{}}>
-      <App />
-    </StaticRouter>
+    <Provider store={store}>
+      <StaticRouter location={req.path} context={{}}>
+        <App />
+      </StaticRouter>
+    </Provider>
   );
 
   return `
