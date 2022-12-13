@@ -9,7 +9,11 @@ import thunk from "redux-thunk";
 import App from "./src/App";
 import reducers from "./src/redux/store";
 
-const store = createStore(reducers, {}, applyMiddleware(thunk));
+const store = createStore(
+  reducers,
+  window.INITIAL_STATE,
+  applyMiddleware(thunk)
+);
 
 const container = document.getElementById("root");
 
