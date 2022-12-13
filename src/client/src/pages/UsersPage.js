@@ -27,4 +27,7 @@ const mapStateToProps = (state) => {
   return { users: state.users };
 };
 
-export default connect(mapStateToProps, { fetchUsers })(UsersPage);
+export default {
+  component: connect(mapStateToProps, { fetchUsers })(UsersPage),
+  loadData,
+};
