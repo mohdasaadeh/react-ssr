@@ -24,7 +24,7 @@ export const loadData = (store) => {
 };
 
 const mapStateToProps = (state) => {
-  return { users: state.users };
+  return { users: state.users.data };
 };
 
 export default {
