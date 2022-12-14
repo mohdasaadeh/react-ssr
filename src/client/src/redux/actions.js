@@ -1,9 +1,13 @@
-import axios from "axios";
+import { FETCH_USERS, CHECK_USER } from "./types";
 
-import { FETCH_USERS } from "./types";
-
-export const fetchUsers = () => async (dispatch) => {
-  const response = await axios.get("https://react-ssr-api.herokuapp.com/users");
+export const fetchUsers = () => async (dispatch, getState, api) => {
+  const response = await api.get("/users");
 
   dispatch({ type: FETCH_USERS, payload: response.data });
+};
+
+export const checkUser = () => async (dispatch, getState, api) => {
+  const response = await api.get("/current_user");
+
+  dispatch({ type: CHECK_USER, payload: response.data });
 };

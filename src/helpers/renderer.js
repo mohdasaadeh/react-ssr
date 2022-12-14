@@ -5,13 +5,13 @@ import { renderRoutes } from "react-router-config";
 import { Provider } from "react-redux";
 import serialize from "serialize-javascript";
 
-import App from "../client/src/App";
+import Routes from "../client/src/Routes";
 
 export const renderer = (req, store) => {
   const client = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.path} context={{}}>
-        {renderRoutes(App)}
+        {renderRoutes(Routes)}
       </StaticRouter>
     </Provider>
   );

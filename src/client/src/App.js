@@ -1,18 +1,20 @@
+import React from "react";
 import "@babel/polyfill";
+import { renderRoutes } from "react-router-config";
 
-import HomePage from "./pages/HomePage";
-import UsersPage from "./pages/UsersPage";
+import { checkUser } from "./redux/actions";
+import Navbar from "./layouts/Navbar";
 
-const App = [
-  {
-    ...HomePage,
-    path: "/",
-    exact: true,
-  },
-  {
-    ...UsersPage,
-    path: "/users",
-  },
-];
+const App = ({ route }) => {
+  return (
+    <div>
+      <Navbar />
+      <div style={{ marginTop: "20px" }}>{renderRoutes(route.routes)}</div>
+    </div>
+  );
+};
 
-export default App;
+export default {
+  component: App,
+  loadData: ({ dispatch }) => dispatch(checkUser()),
+};

@@ -1,9 +1,16 @@
 import { FETCH_USERS } from "../types";
 
-export const usersReducer = (state = [], action) => {
+const initialState = {
+  users: [],
+};
+
+export const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USERS:
-      return action.payload;
+      return {
+        ...state,
+        users: action.payload,
+      };
     default:
       return state;
   }
