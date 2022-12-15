@@ -29,7 +29,18 @@ app.get("*", async (req, res) => {
 
   await Promise.all(promises);
 
-  res.send(renderer(req, store));
+  const context = {};
+
+  const client = renderer(req, store, context);
+
+  console.log(context);
+
+  if (context.notFound) {
+    console.log("hi");
+    res.status(404);
+  }
+
+  res.send(client);
 });
 
 app.listen("3000", () => {

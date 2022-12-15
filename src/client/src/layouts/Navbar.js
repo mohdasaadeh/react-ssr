@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Navbar extends React.Component {
@@ -24,7 +25,13 @@ class Navbar extends React.Component {
           fontWeight: "bold",
         }}
       >
+        <Link to={"/users"}>
+          <div style={{ marginRight: "10px" }}>Users</div>
+        </Link>
         {this.renderAuth()}
+        <Link to={"/admins"}>
+          <div style={{ marginLeft: "10px" }}>Admins</div>
+        </Link>
       </div>
     );
   }
