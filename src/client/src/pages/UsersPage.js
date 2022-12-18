@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Helmet } from "react-helmet";
 
 import { fetchUsers } from "../redux/actions";
 
@@ -14,8 +15,22 @@ class UsersPage extends React.Component {
     });
   }
 
+  head() {
+    return (
+      <Helmet>
+        <title>{`${this.props.users.length} Users Loaded`}</title>
+        <meta property="og:type" content="article" />
+      </Helmet>
+    );
+  }
+
   render() {
-    return <ul>{this.renderUsers()}</ul>;
+    return (
+      <div>
+        {this.head()}
+        <ul>{this.renderUsers()}</ul>
+      </div>
+    );
   }
 }
 
