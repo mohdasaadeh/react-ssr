@@ -23,9 +23,18 @@ app.use(express.static("build"));
 app.get("*", async (req, res) => {
   const store = createReduxStore(req);
 
-  const promises = matchRoutes(Routes, req.path).map(({ route }) => {
-    return route.loadData ? route.loadData(store) : null;
-  });
+  const promises = matchRoutes(Routes, req.path)
+    .map(({ route }) => {
+      return route.loadData ? route.loadData(store) : null;
+    })
+    .map((promise) => {
+      return (
+        promise &&
+        new Promise((resolve) => {
+          promise.then(resolve).catch(resolve);
+        })
+      );
+    });
 
   await Promise.all(promises);
 
@@ -33,10 +42,11 @@ app.get("*", async (req, res) => {
 
   const client = renderer(req, store, context);
 
-  console.log(context);
+  if (context.url) {
+    return res.redirect(301, context.url);
+  }
 
   if (context.notFound) {
-    console.log("hi");
     res.status(404);
   }
 

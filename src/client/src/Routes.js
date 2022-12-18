@@ -2,6 +2,7 @@ import "@babel/polyfill";
 
 import App from "./App";
 import NotFoundPage from "./pages/NotFoundPage";
+import AdminsPage from "./pages/AdminsPage";
 import HomePage from "./pages/HomePage";
 import UsersPage from "./pages/UsersPage";
 
@@ -18,6 +19,10 @@ const Routes = [
       {
         ...UsersPage,
         path: "/users",
+      },
+      {
+        ...AdminsPage,
+        path: "/admins",
       },
       {
         ...NotFoundPage,
